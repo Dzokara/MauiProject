@@ -1,0 +1,113 @@
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AndroidIspitniProjekat.Components.JobComponent"
+             x:Name="Self">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="TextColor" Value="#333333" />
+            </Style>
+            <Style TargetType="Image">
+                <Setter Property="WidthRequest" Value="70" />
+                <Setter Property="HeightRequest" Value="70" />
+                <Setter Property="Aspect" Value="AspectFill" />
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="BackgroundColor" Value="#CCCCCC" />
+            </Style>
+            <Style TargetType="HorizontalStackLayout">
+                <Setter Property="Margin" Value="5, 2" />
+                <Setter Property="Spacing" Value="5" />
+            </Style>
+            <Style TargetType="VerticalStackLayout">
+                <Setter Property="BackgroundColor" Value="#FFFFFF" />
+                <Setter Property="Padding" Value="10" />
+                <Setter Property="Spacing" Value="10" />
+                <Setter Property="Margin" Value="10" />
+            </Style>
+            <Style TargetType="Frame">
+                <Setter Property="Padding" Value="10" />
+                <Setter Property="Margin" Value="0, 10" />
+                <Setter Property="BackgroundColor" Value="#F0F0F0" />
+                <Setter Property="CornerRadius" Value="5" />
+            </Style>
+            <Style TargetType="BoxView">
+                <Setter Property="HeightRequest" Value="1" />
+                <Setter Property="Color" Value="#CCCCCC" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+
+        <Frame Style="{StaticResource Frame}" BindingContext="{x:Reference Self}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <!-- Position -->
+                <HorizontalStackLayout Grid.Row="0">
+                    <Label Text="Position:" FontAttributes="Bold" />
+                    <Label Text="{Binding Position}" />
+                </HorizontalStackLayout>
+
+                <!-- Company -->
+                <HorizontalStackLayout Grid.Row="1">
+                    <Label Text="Company:" FontAttributes="Bold" />
+                    <Label Text="{Binding Company}" />
+                </HorizontalStackLayout>
+
+                <!-- Image -->
+                <HorizontalStackLayout Grid.Row="2">
+                    <Label Text="Image:" FontAttributes="Bold" />
+                    <Image Source="{Binding Image, StringFormat='http://localhost:5048/{0}'}" />
+                </HorizontalStackLayout>
+
+                <!-- Region -->
+                <HorizontalStackLayout Grid.Row="3">
+                    <Label Text="Region:" FontAttributes="Bold" />
+                    <Label Text="{Binding Region}" />
+                </HorizontalStackLayout>
+
+                <!-- Deadline -->
+                <HorizontalStackLayout Grid.Row="4">
+                    <Label Text="Deadline:" FontAttributes="Bold" />
+                    <Label Text="{Binding Deadline, StringFormat='{0:yyyy-MM-dd}'}" />
+                </HorizontalStackLayout>
+
+                <!-- Salary -->
+                <HorizontalStackLayout Grid.Row="5">
+                    <Label Text="Salary:" FontAttributes="Bold" />
+                    <Label Text="{Binding Salary, StringFormat='{0:C}'}" />
+                </HorizontalStackLayout>
+
+                <!-- Remote -->
+                <HorizontalStackLayout Grid.Row="6">
+                    <Label Text="Remote:" FontAttributes="Bold" />
+                    <Label Text="{Binding Remote}" />
+                </HorizontalStackLayout>
+
+                <!-- Description -->
+                <HorizontalStackLayout Grid.Row="7">
+                    <Label Text="Description:" FontAttributes="Bold" />
+                    <Label Text="{Binding Description}"/>
+                </HorizontalStackLayout>
+
+                <!-- Type -->
+                <HorizontalStackLayout Grid.Row="8">
+                    <Label Text="Type:" FontAttributes="Bold" />
+                    <Label Text="{Binding Type}" />
+                </HorizontalStackLayout>
+            </Grid>
+        </Frame>
+
+</ContentView>

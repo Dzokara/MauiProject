@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:AndroidIspitniProjekat.ViewModels"
+             x:Class="AndroidIspitniProjekat.AdminJobsPage"
+             Title="AdminJobsPage">
+    <ContentPage.BindingContext>
+            <local:AdminJobsViewModel />
+        </ContentPage.BindingContext>
+    <ScrollView>
+        <StackLayout Padding="10">
+            <!-- Position -->
+            <Label Text="Position" />
+            <Picker Title="Select position" SelectedItem="{Binding SelectedPosition.Value}">
+                <Picker.ItemsSource>
+                    <Binding Path="Positions" />
+                </Picker.ItemsSource>
+                <Picker.ItemDisplayBinding>
+                    <Binding Path="Name" />
+                </Picker.ItemDisplayBinding>
+            </Picker>
+            <Label IsVisible="{Binding SelectedPosition.HasError}" Text="{Binding SelectedPosition.Error}" TextColor="Red" />
+            <!-- Company -->
+            <Label Text="Company" />
+            <Picker Title="Select company" SelectedItem="{Binding SelectedCompany.Value}">
+                <Picker.ItemsSource>
+                    <Binding Path="Companies" />
+                </Picker.ItemsSource>
+                <Picker.ItemDisplayBinding>
+                    <Binding Path="Name" />
+                </Picker.ItemDisplayBinding>
+            </Picker>
+            <Label IsVisible="{Binding SelectedCompany.HasError}" Text="{Binding SelectedCompany.Error}" TextColor="Red" />
+            <!-- Region -->
+            <Label Text="Region" />
+            <Picker Title="Select region" SelectedItem="{Binding SelectedRegion.Value}">
+                <Picker.ItemsSource>
+                    <Binding Path="Regions" />
+                </Picker.ItemsSource>
+                <Picker.ItemDisplayBinding>
+                    <Binding Path="Name" />
+                </Picker.ItemDisplayBinding>
+            </Picker>
+            <Label IsVisible="{Binding SelectedRegion.HasError}" Text="{Binding SelectedRegion.Error}" TextColor="Red" />
+            <!-- Type -->
+            <Label Text="Type" />
+            <Picker Title="Select type" SelectedItem="{Binding SelectedType.Value}">
+                <Picker.ItemsSource>
+                    <Binding Path="Types" />
+                </Picker.ItemsSource>
+                <Picker.ItemDisplayBinding>
+                    <Binding Path="Name" />
+                </Picker.ItemDisplayBinding>
+            </Picker>
+            <Label IsVisible="{Binding SelectedType.HasError}" Text="{Binding SelectedType.Error}" TextColor="Red" />
+            <!-- Remote -->
+            <Label Text="Remote" />
+            <Picker Title="Select remote" SelectedItem="{Binding SelectedRemote.Value}">
+                <Picker.ItemsSource>
+                    <Binding Path="Remote" />
+                </Picker.ItemsSource>
+                <Picker.ItemDisplayBinding>
+                    <Binding Path="Name" />
+                </Picker.ItemDisplayBinding>
+            </Picker>
+            <Label IsVisible="{Binding SelectedRemote.HasError}" Text="{Binding SelectedRemote.Error}" TextColor="Red" />
+            <!-- Description -->
+            <Label Text="Description" />
+            <Editor Text="{Binding Description.Value}" Placeholder="Enter job description" HeightRequest="100" />
+            <Label IsVisible="{Binding Description.HasError}" Text="{Binding Description.Error}" TextColor="Red" />
+            <!-- Salary -->
+            <Label Text="Salary" />
+            <Entry Text="{Binding Salary.Value}" Placeholder="Enter salary" Keyboard="Numeric" />
+            <Label IsVisible="{Binding Salary.HasError}" Text="{Binding Salary.Error}" TextColor="Red" />
+            <!-- Deadline -->
+            <Label Text="Deadline" />
+            <DatePicker Date="{Binding Deadline.Value}" MinimumDate="{Binding MinimumDate}" />
+            <Label IsVisible="{Binding Deadline.HasError}" Text="{Binding Deadline.Error}" TextColor="Red" />
+            <!-- Submit button -->
+            <Button Text="Submit"
+                    IsEnabled="{Binding ButtonEnabled.Value}"
+                    Command="{Binding SubmitCommand}"
+                   />
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

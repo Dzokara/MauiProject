@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AndroidIspitniProjekat.BlogDetailPage"
+             xmlns:local="clr-namespace:AndroidIspitniProjekat.ViewModels"
+             Title="BlogDetailPage">
+    <ContentPage.Resources>
+        <!-- Styles for enhanced visuals -->
+        <ResourceDictionary>
+            <Style TargetType="Button" x:Key="GoBackButtonStyle">
+                <Setter Property="BackgroundColor" Value="#FF5722" />
+                <!-- Deep Orange 500 -->
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="CornerRadius" Value="8" />
+                <Setter Property="HeightRequest" Value="50" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="Margin" Value="0,20,0,0" />
+                <Setter Property="Padding" Value="10" />
+            </Style>
+            <Style TargetType="Label" x:Key="SectionHeaderStyle">
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="#FF5722" />
+                <!-- Deep Orange 500 -->
+                <Setter Property="Margin" Value="0,20,0,10" />
+            </Style>
+            <Style TargetType="Label" x:Key="CommentAuthorStyle">
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+            <Style TargetType="Label" x:Key="CommentTextStyle">
+                <Setter Property="FontSize" Value="Small" />
+                <Setter Property="TextColor" Value="#757575" />
+                <!-- Gray 600 -->
+            </Style>
+            <Style TargetType="Frame" x:Key="CommentFrameStyle">
+                <Setter Property="BorderColor" Value="#E0E0E0" />
+                <!-- Gray 300 -->
+                <Setter Property="CornerRadius" Value="8" />
+                <Setter Property="Padding" Value="10" />
+                <Setter Property="Margin" Value="0,5" />
+                <Setter Property="HasShadow" Value="True" />
+                <!-- Gray 600 -->
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="20" Spacing="15">
+                <!-- Go Back Button -->
+                <Button Text="Go Back" 
+                        Command="{Binding GoBackCommand}"
+                        Style="{StaticResource GoBackButtonStyle}" />
+
+                <!-- Blog Title -->
+                <Label Text="{Binding Blog.Value.Title}" 
+                       FontSize="Large" 
+                       FontAttributes="Bold" 
+                       HorizontalOptions="Center" 
+                       Margin="0,20,0,10" />
+
+                <!-- Blog Image -->
+                <Image Source="{Binding Blog.Value.Image, StringFormat='http://localhost:5048/{0}'}" 
+                       Aspect="AspectFill"
+                       HorizontalOptions="Center" 
+                       Margin="0,0,0,20" />
+
+                <!-- Blog Description -->
+                <Label Text="{Binding Blog.Value.Description}" 
+                       FontSize="Medium" 
+                       HorizontalOptions="Center" 
+                       Margin="0,10,0,10" />
+
+                <!-- Blog Date -->
+                <Label Text="{Binding Blog.Value.Date, StringFormat='Posted on {0:d}'}" 
+                       FontSize="Small" 
+                       HorizontalOptions="Center" 
+                       TextColor="#757575" />
+                <!-- Gray 600 -->
+                <StackLayout Spacing="10" Margin="0,20,0,20">
+                        <Label Text="Leave a Comment:"
+                           Style="{StaticResource SectionHeaderStyle}" />
+                        <Entry Placeholder="Write your comment..."
+                           Text="{Binding NewCommentText.Value}"
+                           BackgroundColor="#F5F5F5" 
+                           PlaceholderColor="#BDBDBD"
+                           HeightRequest="100"
+                           VerticalOptions="StartAndExpand" />
+                        <Button Text="Post Comment"
+                            Command="{Binding AddCommentCommand}"
+                            BackgroundColor="#FF5722"
+                            TextColor="White"
+                            CornerRadius="8"
+                            HeightRequest="50"
+                            HorizontalOptions="FillAndExpand" />
+                </StackLayout>
+                <!-- Comments Section Header -->
+                <Label Text="Comments:" 
+                       Style="{StaticResource SectionHeaderStyle}" />
+
+                
+
+                <!-- Comments CollectionView -->
+                <CollectionView ItemsSource="{Binding Blog.Value.Comments}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame Style="{StaticResource CommentFrameStyle}">
+                                <StackLayout>
+                                    <!-- Comment Author -->
+                                    <Label Text="{Binding User.Username}" 
+                                           Style="{StaticResource CommentAuthorStyle}" />
+
+                                    <!-- Comment Text -->
+                                    <Label Text="{Binding Text}" 
+                                           Style="{StaticResource CommentTextStyle}" />
+                                </StackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

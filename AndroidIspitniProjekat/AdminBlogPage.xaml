@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:AndroidIspitniProjekat.ViewModels"
+             x:Class="AndroidIspitniProjekat.AdminBlogPage"
+             Title="AdminBlogPage">
+    <ContentPage.BindingContext>
+        <local:AdminBlogViewModel />
+    </ContentPage.BindingContext>
+    <ScrollView>
+        <StackLayout Padding="20" Spacing="15">
+            <!-- Title -->
+            <Label Text="Title" FontSize="Medium" FontAttributes="Bold"/>
+            <Entry Text="{Binding Title.Value}" Placeholder="Enter title" BackgroundColor="#f0f0f0" Margin="0,0,0,10"/>
+            <Label IsVisible="{Binding Title.HasError}" Text="{Binding Title.Error}" TextColor="Red" FontSize="Small"/>
+
+            <!-- Description -->
+            <Label Text="Description" FontSize="Medium" FontAttributes="Bold"/>
+            <Editor Text="{Binding Description.Value}" Placeholder="Enter description" HeightRequest="100" BackgroundColor="#f0f0f0" Margin="0,0,0,10"/>
+            <Label IsVisible="{Binding Description.HasError}" Text="{Binding Description.Error}" TextColor="Red" FontSize="Small"/>
+
+            <!-- Image -->
+            <Label Text="Image" FontSize="Medium" FontAttributes="Bold"/>
+            <Button Text="Pick Image" Command="{Binding PickImageCommand}" BackgroundColor="#007acc" TextColor="White" CornerRadius="5" Margin="0,0,0,10"/>
+            <Image Source="{Binding Image.Value}" HeightRequest="200" Margin="0,0,0,10"/>
+            <Label IsVisible="{Binding Image.HasError}" Text="{Binding Image.Error}" TextColor="Red" FontSize="Small"/>
+
+            <!-- Submit button -->
+            <Button Text="Submit"
+                    IsEnabled="{Binding ButtonEnabled.Value}"
+                    Command="{Binding SubmitCommand}"
+                    BackgroundColor="#28a745"
+                    TextColor="White"
+                    CornerRadius="5"
+                    />
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

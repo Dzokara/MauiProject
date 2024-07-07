@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AndroidIspitniProjekat.Login"
+             xmlns:local="clr-namespace:AndroidIspitniProjekat.ViewModels"
+             Title="Login">
+    <ContentPage.BindingContext>
+        <local:LoginViewModel/>
+    </ContentPage.BindingContext>
+    <ScrollView>
+        <VerticalStackLayout
+    Padding="30,0"
+    >
+            <Label
+        Text="Login to JobBoard here : "
+        Style="{StaticResource Headline}"
+        SemanticProperties.HeadingLevel="Level1" />
+
+            <Entry Placeholder="Email" Text="{Binding Email.Value}" BackgroundColor="AliceBlue" />
+            <Label Text="{Binding Email.Error}" TextColor="Red" />
+
+            <Entry Placeholder="Password" IsPassword="True" Text="{Binding Password.Value}" BackgroundColor="AliceBlue" />
+            <Label IsVisible="{Binding Password.HasError}" Text="{Binding Password.Error}" TextColor="Red" />
+
+            <Button Text="Login"
+        IsEnabled="{Binding ButtonEnabled.Value}"
+        Command="{Binding LoginCommand}"
+        HorizontalOptions="Fill" 
+        Margin="0,30,0,0"/>
+
+            <Label Text="Invalid credentials." IsVisible="{Binding InvalidCredentials.Value}" TextColor="Red"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

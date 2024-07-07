@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AndroidIspitniProjekat.JobPage"
+             xmlns:local="clr-namespace:AndroidIspitniProjekat.ViewModels"
+             xmlns:cmp="clr-namespace:AndroidIspitniProjekat.Components"
+             Title="JobPage">
+    <ContentPage.BindingContext>
+        <local:JobViewModel/>
+    </ContentPage.BindingContext>
+    <ScrollView>
+    <VerticalStackLayout>
+        
+        <Label 
+         Text="All jobs currently in offer : "
+         VerticalOptions="Center" 
+         HorizontalOptions="Center" />
+
+            <SearchBar  Text="{Binding Keyword.Value}" Placeholder="Search here... "  Margin="0, 5, 0, 10"/>
+
+        <CollectionView ItemsSource="{Binding Jobs}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <cmp:JobComponent Position="{Binding Position.Name}"
+                            Company="{Binding Company.Name}"
+                            Image="{Binding Company.Image}"
+                            Region="{Binding Region.Name}"
+                            Deadline="{Binding Deadline}"
+                            Salary="{Binding Salary}"
+                            Remote="{Binding Remote.Name}"
+                            Description="{Binding Description}"
+                            Type="{Binding Type.Name}"/>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        
+    </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

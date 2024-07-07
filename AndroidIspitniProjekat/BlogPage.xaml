@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AndroidIspitniProjekat.BlogPage"
+             xmlns:local="clr-namespace:AndroidIspitniProjekat.ViewModels"
+             xmlns:cmp="clr-namespace:AndroidIspitniProjekat.Components"
+             Title="BlogPage">
+    <ContentPage.BindingContext>
+        <local:BlogViewModel/>
+    </ContentPage.BindingContext>
+    <ScrollView>
+        <VerticalStackLayout>
+            <Label 
+                Text="Our blog : "
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" />
+            <CollectionView ItemsSource="{Binding Blogs}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <cmp:BlogComponent 
+                                Title="{Binding Title}"
+                                Description="{Binding Description}"
+                                Image="{Binding Image}"
+                                Date="{Binding Date}" />
+                            <Button Text="View Blog Details" 
+                                    Clicked="OnViewBlogDetailsClicked" 
+                                    CommandParameter="{Binding Id}" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
